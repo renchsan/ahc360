@@ -5,6 +5,7 @@
  *
  * W3C Device Orientation control (http://w3c.github.io/deviceorientation/spec-source-orientation.html)
  */
+import * as THREE from 'https://threejsfundamentals.org/threejs/resources/threejs/r127/build/three.module.js';
 
 THREE.DeviceOrientationControls = function ( object ) {
 
