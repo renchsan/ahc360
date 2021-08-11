@@ -1,6 +1,6 @@
 import * as THREE from 'https://threejsfundamentals.org/threejs/resources/threejs/r127/build/three.module.js';
 import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/threejs/r127/examples/jsm/controls/OrbitControls.js';
-import { DeviceOrientationControls } from './DeviceOrientationControls';
+import { DeviceOrientationControls } from './DeviceOrientationControls.js';
 
 			let camera, controls;
 			let renderer;
@@ -67,8 +67,6 @@ import { DeviceOrientationControls } from './DeviceOrientationControls';
 				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.01, 1000 );
 				camera.position.z = 0.00001;
                 camera.rotation.z = 100
-                
-               
 
 				// controls = new OrbitControls( camera, renderer.domElement );
 				// controls.enableZoom = false;
@@ -78,12 +76,10 @@ import { DeviceOrientationControls } from './DeviceOrientationControls';
 
                 controls = new THREE.DeviceOrientationControls( camera );
 
-
                 //***********************CUBE MAP********************
 				envLoad("scenes/test_scene2.jpg")
                 
-                
-			
+
                 //***********************LIGHT********************
                 const color = 0xFFFFFF;
                 const intensity = 1;
