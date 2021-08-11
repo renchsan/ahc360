@@ -221,8 +221,8 @@ function animate() {
       }
 
 
-    controls.update(); // required when damping is enabled
-    // controls.update(lon, lat);
+    // controls.update(); // required when damping is enabled
+    controls.update(mouse.x, mouse.y);
     renderer.render( scene, camera );
     runTween()
 
@@ -342,9 +342,6 @@ function clickTrigger(){
         clickableVideo = false
 
 
-
-
-
           }
         });
 }
@@ -397,4 +394,5 @@ function runTween() {
     TWEEN.update()
     // [...]
 }
+
 
