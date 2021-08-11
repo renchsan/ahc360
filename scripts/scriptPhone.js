@@ -76,6 +76,7 @@ function init() {
     // controls.rotateSpeed = - 0.25;
 
     controls = new DeviceOrientationControls( camera );
+    controls.connect()
 
     //***********************CUBE MAP********************
     envLoad("scenes/test_scene2.jpg")
