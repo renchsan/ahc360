@@ -221,7 +221,7 @@ function animate() {
       }
 
 
-    // controls.update(); // required when damping is enabled
+    controls.update(); // required when damping is enabled
     deviceControls.update(mouse.x, mouse.y);
     renderer.render( scene, camera );
     runTween()
