@@ -3,7 +3,7 @@ import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/t
 // import { DeviceOrientationControls } from 'https://threejsfundamentals.org/threejs/resources/threejs/r127/examples/jsm/controls/DeviceOrientationControls.js';
 import { DeviceOrientationControls } from './DeviceOrientationControls.js'
 
-let camera, controls;
+let camera, controls, deviceControls;
 let renderer;
 let scene,spriteScene,spriteScene2,text,cubeColor,materials,skyBox,opacityValue,transparentBool,sprite,sprite2,sprite3,sprite4;
 let videoScene,textScene ,spriteScene3,spriteScene4,videoMesh,filterScene;
@@ -28,7 +28,7 @@ closeButton.addEventListener( 'click', function () {
 if(clickableVideo == false){
     document.getElementById('video_id').style.display = 'none';
     document.getElementById('blackScreen').style.display = 'none';
-    // controls.enableRotate = true
+    controls.enableRotate = true
     controls.enabled = true
     // clickableVideo = true
     setTimeout(function(){ clickableVideo = true
@@ -69,14 +69,14 @@ function init() {
     camera.position.z = 0.00001;
     camera.rotation.z = 100
 
-    // controls = new OrbitControls( camera, renderer.domElement );
-    // controls.enableZoom = false;
-    // controls.enablePan = false;
-    // controls.enableDamping = true;
-    // controls.rotateSpeed = - 0.25;
+    controls = new OrbitControls( camera, renderer.domElement );
+    controls.enableZoom = false;
+    controls.enablePan = false;
+    controls.enableDamping = true;
+    controls.rotateSpeed = - 0.25;
 
-    controls = new DeviceOrientationControls( camera );
-    controls.connect()
+    deviceControls = new DeviceOrientationControls( camera );
+    deviceControls.connect()
 
     //***********************CUBE MAP********************
     envLoad("scenes/test_scene2.jpg")
@@ -222,7 +222,7 @@ function animate() {
 
 
     // controls.update(); // required when damping is enabled
-    controls.update(mouse.x, mouse.y);
+    deviceControls.update(mouse.x, mouse.y);
     renderer.render( scene, camera );
     runTween()
 
@@ -337,8 +337,8 @@ function clickTrigger(){
         document.getElementById('video2').style.display = 'block';
         document.getElementById('video_id').style.display = 'block';
         document.getElementById('blackScreen').style.display = 'block';
-        // controls.enableRotate = false
-        controls.enabled = false
+        controls.enableRotate = false
+        deviceControls.enabled = false
         clickableVideo = false
 
 

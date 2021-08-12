@@ -2,7 +2,6 @@ import * as THREE from 'https://threejsfundamentals.org/threejs/resources/threej
 
 import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/threejs/r127/examples/jsm/controls/OrbitControls.js';
 
-
 			let camera, controls;
 			let renderer;
 			let scene,spriteScene,spriteScene2,text,cubeColor,materials,skyBox,opacityValue,transparentBool,sprite,sprite2,sprite3,sprite4;

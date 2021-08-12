@@ -63,52 +63,30 @@ var DeviceOrientationControls = function ( object ) {
         // iOS 13+
 
         if ( window.DeviceOrientationEvent !== undefined && typeof window.DeviceOrientationEvent.requestPermission === 'function' ) {
-
             window.DeviceOrientationEvent.requestPermission().then( function ( response ) {
-
                 if ( response == 'granted' ) {
-
                     window.addEventListener( 'orientationchange', onScreenOrientationChangeEvent, false );
                     window.addEventListener( 'deviceorientation', onDeviceOrientationChangeEvent, false );
-
                 }
-
             } ).catch( function ( error ) {
-
                 console.error( 'THREE.DeviceOrientationControls: Unable to use DeviceOrientation API:', error );
-
             } );
-
         } else {
-
             window.addEventListener( 'orientationchange', onScreenOrientationChangeEvent, false );
             window.addEventListener( 'deviceorientation', onDeviceOrientationChangeEvent, false );
-
         }
-
         scope.enabled = true;
-
-
-        // window.addEventListener( 'orientationchange', onScreenOrientationChangeEvent, false );
-        // window.addEventListener( 'deviceorientation', onDeviceOrientationChangeEvent, false );
-        //
-        // scope.enabled = true;
-
     };
 
     this.disconnect = function () {
-
         window.removeEventListener( 'orientationchange', onScreenOrientationChangeEvent, false );
         window.removeEventListener( 'deviceorientation', onDeviceOrientationChangeEvent, false );
 
         scope.enabled = false;
-
     };
 
     this.update = function (_horizontalOffset, _verticalOffset) {
-
         if ( scope.enabled === false ) return;
-
         if (_horizontalOffset != undefined)	scope.horizontalOffset = _horizontalOffset;
         if (_verticalOffset != undefined)	scope.verticalOffset  = _verticalOffset;
 
