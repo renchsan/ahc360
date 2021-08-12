@@ -83,10 +83,13 @@ var DeviceOrientationControls = function ( object ) {
         window.removeEventListener( 'deviceorientation', onDeviceOrientationChangeEvent, false );
 
         scope.enabled = false;
+
     };
 
     this.update = function (_horizontalOffset, _verticalOffset) {
+
         if ( scope.enabled === false ) return;
+
         if (_horizontalOffset != undefined)	scope.horizontalOffset = _horizontalOffset;
         if (_verticalOffset != undefined)	scope.verticalOffset  = _verticalOffset;
 
@@ -110,13 +113,10 @@ var DeviceOrientationControls = function ( object ) {
     };
 
     this.dispose = function () {
-
         scope.disconnect();
-
     };
 
     this.connect();
-
 };
 
 export { DeviceOrientationControls }
