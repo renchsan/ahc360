@@ -29,7 +29,7 @@ if(clickableVideo == false){
     document.getElementById('video_id').style.display = 'none';
     document.getElementById('blackScreen').style.display = 'none';
     controls.enableRotate = true
-    deviceControls.enabled = true
+    // deviceControls.enabled = true
     // clickableVideo = true
     setTimeout(function(){ clickableVideo = true
 
@@ -76,7 +76,7 @@ function init() {
     controls.rotateSpeed = - 0.25;
 
     deviceControls = new DeviceOrientationControls( camera );
-    deviceControls.connect()
+    // deviceControls.connect()
 
     //***********************CUBE MAP********************
     envLoad("scenes/test_scene2.jpg")
@@ -213,7 +213,7 @@ function animate() {
         testBool = false;
       }
     controls.update(); // required when damping is enabled
-    deviceControls.update(mouse.x, mouse.y);
+    // deviceControls.update(mouse.x, mouse.y);
     renderer.render( scene, camera );
     runTween()
 }
@@ -325,7 +325,7 @@ function clickTrigger(){
                 document.getElementById('video_id').style.display = 'block';
                 document.getElementById('blackScreen').style.display = 'block';
                 controls.enableRotate = false
-                deviceControls.enabled = false
+                // deviceControls.enabled = false
                 clickableVideo = false
             }
         });
