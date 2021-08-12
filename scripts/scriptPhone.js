@@ -29,7 +29,7 @@ if(clickableVideo == false){
     document.getElementById('video_id').style.display = 'none';
     document.getElementById('blackScreen').style.display = 'none';
     controls.enableRotate = true
-    controls.enabled = true
+    deviceControls.enabled = true
     // clickableVideo = true
     setTimeout(function(){ clickableVideo = true
 
@@ -190,18 +190,13 @@ function getTexturesFromAtlasFile( atlasImgUrl, tilesNum ) {
 }
 
 function onWindowResize() {
-
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
-
     renderer.setSize( window.innerWidth, window.innerHeight );
-
 }
 
 function animate() {
-
     requestAnimationFrame( animate );
-
     //***********************TWEEN********************
     var vector = camera.position.clone();
     var testBool = false
@@ -210,8 +205,6 @@ function animate() {
         new TWEEN.Tween( text.material ).to( { opacity: 1 }, 100 ).start();
         new TWEEN.Tween( cubeColor.material ).to( { opacity: 0.5 }, 100 ).start();
 
-
-
         testBool = true;
     } if( Math.abs(vector.x) > 0.0000010130538922770067 && Math.abs(vector.x) <0.000006352257762340783){
         new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
@@ -219,70 +212,90 @@ function animate() {
         new TWEEN.Tween( cubeColor.material ).to( { opacity: 0 }, 100 ).start();
         testBool = false;
       }
-
-
     controls.update(); // required when damping is enabled
     deviceControls.update(mouse.x, mouse.y);
     renderer.render( scene, camera );
     runTween()
-
 }
+
 function clickTrigger(){
     const raycaster = new THREE.Raycaster();
     document.addEventListener(
         "click",
         event => {
 
-        mouse.x = event.clientX / window.innerWidth * 2 - 1;
-        mouse.y = -(event.clientY / window.innerHeight) * 2 +1 ;
+            mouse.x = event.clientX / window.innerWidth * 2 - 1;
+            mouse.y = -(event.clientY / window.innerHeight) * 2 +1 ;
 
-        raycaster.setFromCamera( mouse, camera );
+            raycaster.setFromCamera( mouse, camera );
 
-        var intersects = raycaster.intersectObjects( spriteScene2.children, false );
-        var intersects2 = raycaster.intersectObjects( spriteScene3.children, false );
-        var intersects3 = raycaster.intersectObjects( spriteScene.children, false );
-        var intersects4 = raycaster.intersectObjects( spriteScene4.children, false );
-        var intersectsVideo = raycaster.intersectObjects( videoScene.children, false );
-        if ( intersects.length > 0 ) {
-            setTimeout(function(){
-                scene.add(spriteScene3);
-                spriteScene3.add(sprite3);
+            var intersects = raycaster.intersectObjects( spriteScene2.children, false );
+            var intersects2 = raycaster.intersectObjects( spriteScene3.children, false );
+            var intersects3 = raycaster.intersectObjects( spriteScene.children, false );
+            var intersects4 = raycaster.intersectObjects( spriteScene4.children, false );
+            var intersectsVideo = raycaster.intersectObjects( videoScene.children, false );
+            if ( intersects.length > 0 ) {
+                setTimeout(function(){
+                    scene.add(spriteScene3);
+                    spriteScene3.add(sprite3);
 
-            }, 1000);
-            envLoad("scenes/test_scene_2.jpg")
-            scene.remove(spriteScene);
-            scene.remove(spriteScene2);
-            scene.remove(filterScene);
-            scene.remove(textScene);
-            clickableVideo = false
-            videoMesh.position.set(135, 15, -15);
+                }, 1000);
+                envLoad("scenes/test_scene_2.jpg")
+                scene.remove(spriteScene);
+                scene.remove(spriteScene2);
+                scene.remove(filterScene);
+                scene.remove(textScene);
+                clickableVideo = false
+                videoMesh.position.set(135, 15, -15);
 
-        }
-        if ( intersects3.length > 0 ) {
-            setTimeout(function(){
-                scene.add(spriteScene4)
-                spriteScene4.add(sprite4);
+            }
+            if ( intersects3.length > 0 ) {
+                setTimeout(function(){
+                    scene.add(spriteScene4)
+                    spriteScene4.add(sprite4);
 
-            }, 1000);
-            envLoad("scenes/test_scene3.jpg")
-            scene.remove(spriteScene);
-            scene.remove(spriteScene2);
-            scene.remove(videoScene);
-            scene.remove(filterScene);
-            scene.remove(textScene);
-            clickableVideo = false
+                }, 1000);
+                envLoad("scenes/test_scene3.jpg")
+                scene.remove(spriteScene);
+                scene.remove(spriteScene2);
+                scene.remove(videoScene);
+                scene.remove(filterScene);
+                scene.remove(textScene);
+                clickableVideo = false
 
+            } if(intersects4.length > 0  ) {
+                console.log("clicked")
+                setTimeout(function(){
+                        videoMesh.position.set(50, 1, -10);
+                        scene.add(spriteScene);
+                        scene.add(spriteScene2);
+                        scene.add(videoScene);
+                        scene.add(textScene);
+                        scene.add(filterScene);
 
-        } if(intersects4.length > 0  ) {
-            console.log("clicked")
+                }, 1000);
+                setTimeout(function(){
+                    new TWEEN.Tween( videoMesh.material ).to( { opacity: 1 }, 2000 ).start();
+                    // new TWEEN.Tween( cubeColor.material ).to( { opacity: 0.5 }, 4000 ).start();
+                    new TWEEN.Tween( text.material ).to( { opacity: 1 }, 2000 ).start();
+                }, 900);
+
+                    envLoad("scenes/test_scene2.jpg")
+                    scene.remove(spriteScene4);
+                    new TWEEN.Tween( videoMesh.material ).to( { opacity: 0 }, 100 ).start();
+                    new TWEEN.Tween( cubeColor.material ).to( { opacity: 0 }, 100 ).start();
+                    new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
+                    clickableVideo = true
+                }
+            if(intersects2.length > 0  ) {
             setTimeout(function(){
                     videoMesh.position.set(50, 1, -10);
                     scene.add(spriteScene);
                     scene.add(spriteScene2);
-                    scene.add(videoScene);
+                    // scene.add(videoScene);
                     scene.add(textScene);
                     scene.add(filterScene);
-
+                    spriteScene3.remove(sprite3);
 
             }, 1000);
             setTimeout(function(){
@@ -292,57 +305,29 @@ function clickTrigger(){
             }, 900);
 
                 envLoad("scenes/test_scene2.jpg")
-                scene.remove(spriteScene4);
+                console.log("clicked")
                 new TWEEN.Tween( videoMesh.material ).to( { opacity: 0 }, 100 ).start();
                 new TWEEN.Tween( cubeColor.material ).to( { opacity: 0 }, 100 ).start();
                 new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
+
                 clickableVideo = true
 
-
             }
-        if(intersects2.length > 0  ) {
-        setTimeout(function(){
-                videoMesh.position.set(50, 1, -10);
-                scene.add(spriteScene);
-                scene.add(spriteScene2);
-                // scene.add(videoScene);
-                scene.add(textScene);
-                scene.add(filterScene);
-                spriteScene3.remove(sprite3);
+            else if ( intersectsVideo.length > 0 && clickableVideo == true) {
+                setTimeout(function(){
 
-        }, 1000);
-        setTimeout(function(){
-            new TWEEN.Tween( videoMesh.material ).to( { opacity: 1 }, 2000 ).start();
-            // new TWEEN.Tween( cubeColor.material ).to( { opacity: 0.5 }, 4000 ).start();
-            new TWEEN.Tween( text.material ).to( { opacity: 1 }, 2000 ).start();
-        }, 900);
-
-            envLoad("scenes/test_scene2.jpg")
-            console.log("clicked")
-            new TWEEN.Tween( videoMesh.material ).to( { opacity: 0 }, 100 ).start();
-            new TWEEN.Tween( cubeColor.material ).to( { opacity: 0 }, 100 ).start();
-            new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
-
-            clickableVideo = true
-
-        }
-        else if ( intersectsVideo.length > 0 && clickableVideo == true) {
-            setTimeout(function(){
-
-                var player = videojs('#video2');
-                var video = document.getElementById('video2');
-                video.requestFullscreen();
-                player.play();
-        }, 1500);
-        document.getElementById('video2').style.display = 'block';
-        document.getElementById('video_id').style.display = 'block';
-        document.getElementById('blackScreen').style.display = 'block';
-        controls.enableRotate = false
-        deviceControls.enabled = false
-        clickableVideo = false
-
-
-          }
+                    var player = videojs('#video2');
+                    var video = document.getElementById('video2');
+                    video.requestFullscreen();
+                    player.play();
+                }, 1500);
+                document.getElementById('video2').style.display = 'block';
+                document.getElementById('video_id').style.display = 'block';
+                document.getElementById('blackScreen').style.display = 'block';
+                controls.enableRotate = false
+                deviceControls.enabled = false
+                clickableVideo = false
+            }
         });
 }
 
