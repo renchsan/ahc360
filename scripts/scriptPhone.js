@@ -245,10 +245,10 @@ function clickTrigger(){
             mouse.x = event.clientX / window.innerWidth * 2 - 1;
             mouse.y = -(event.clientY / window.innerHeight) * 2 +1 ;
 
-            console.log('event.clientX = ' + event.clientX)
-            console.log('event.clientY = ' + event.clientY)
-            console.log('mouse.x = ' + mouse.x)
-            console.log('mouse.y = ' + mouse.y)
+            // console.log('event.clientX = ' + event.clientX)
+            // console.log('event.clientY = ' + event.clientY)
+            // console.log('mouse.x = ' + mouse.x)
+            // console.log('mouse.y = ' + mouse.y)
 
             raycaster.setFromCamera( mouse, camera );
 
@@ -361,9 +361,10 @@ function clickTrigger(){
                 clickableVideo = false
             }
 
-        controls.enableRotate = false
-        deviceControls.enabled = true
-
+            controls.enableRotate = false
+            console.log('controls.enableRotate = false')
+            deviceControls.enabled = true
+            console.log('deviceControls.enabled = false')
 
         });
 }
