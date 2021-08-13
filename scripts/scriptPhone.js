@@ -30,8 +30,10 @@ closeButton.addEventListener( 'click', function () {
 if(clickableVideo == false){
     document.getElementById('video_id').style.display = 'none';
     document.getElementById('blackScreen').style.display = 'none';
-    controls.enableRotate = true
+
+    // controls.enableRotate = true
     deviceControls.enabled = true
+
     // clickableVideo = true
     setTimeout(function(){ clickableVideo = true
 
@@ -237,6 +239,7 @@ function clickTrigger(){
         "click",
         event => {
 
+            controls.enableRotate = true
             deviceControls.enabled = false
 
             mouse.x = event.clientX / window.innerWidth * 2 - 1;
@@ -353,13 +356,14 @@ function clickTrigger(){
             document.getElementById('video2').style.display = 'block';
             document.getElementById('video_id').style.display = 'block';
             document.getElementById('blackScreen').style.display = 'block';
-            // controls.enableRotate = false
+            controls.enableRotate = false
             deviceControls.enabled = false
             clickableVideo = false
 
               }
 
         // deviceControls.update(lon, lat);
+
 
         });
 }
