@@ -240,7 +240,9 @@ function clickTrigger(){
         event => {
 
             controls.enableRotate = true
+            console.log('controls.enableRotate = true')
             deviceControls.enabled = false
+            console.log('deviceControls.enabled = false')
 
             mouse.x = event.clientX / window.innerWidth * 2 - 1;
             mouse.y = -(event.clientY / window.innerHeight) * 2 +1 ;
@@ -364,7 +366,7 @@ function clickTrigger(){
             controls.enableRotate = false
             console.log('controls.enableRotate = false')
             deviceControls.enabled = true
-            console.log('deviceControls.enabled = false')
+            console.log('deviceControls.enabled = true')
 
         });
 }
