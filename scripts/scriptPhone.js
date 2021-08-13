@@ -30,8 +30,8 @@ closeButton.addEventListener( 'click', function () {
 if(clickableVideo == false){
     document.getElementById('video_id').style.display = 'none';
     document.getElementById('blackScreen').style.display = 'none';
-    // controls.enableRotate = true
-    controls.enabled = true
+    controls.enableRotate = true
+    deviceControls.enabled = true
     // clickableVideo = true
     setTimeout(function(){ clickableVideo = true
 
@@ -72,10 +72,10 @@ function init() {
     camera.rotation.z = 100
 
     controls = new OrbitControls( camera, renderer.domElement );
-    // controls.enableZoom = false;
-    // controls.enablePan = false;
-    // controls.enableDamping = true;
-    // controls.rotateSpeed = - 0.25;
+    controls.enableZoom = false;
+    controls.enablePan = false;
+    controls.enableDamping = true;
+    controls.rotateSpeed = - 0.25;
 
     deviceControls = new DeviceOrientationControls( camera );
     deviceControls.connect()
@@ -217,7 +217,7 @@ function animate() {
         testBool = false;
       }
 
-    // controls.update(); // required when damping is enabled
+    controls.update(); // required when damping is enabled
 
 
     deviceControls.update(lon, lat);

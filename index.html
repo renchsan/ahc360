@@ -88,7 +88,7 @@
         match : function() {
             // Load a tablet JS file
             loadJS('scripts/scriptPhone.js');
-            //console.log('tablet loaded');
+            console.log('tablet loaded');
         }
     });
 
@@ -96,8 +96,8 @@
     enquire.register("screen and (min-width: 900px)", {
         match : function() {
             // Load a desktop JS file
-            // loadJS('scripts/scriptWeb.js');
-            loadJS('scripts/scriptPhone.js');
+            loadJS('scripts/scriptWeb.js');
+            // loadJS('scripts/scriptPhone.js');
 
             console.log('desktop loaded');
         }
