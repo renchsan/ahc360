@@ -1,6 +1,7 @@
 import * as THREE from 'https://threejsfundamentals.org/threejs/resources/threejs/r127/build/three.module.js';
-import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/threejs/r127/examples/jsm/controls/OrbitControls.js';
+// import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/threejs/r127/examples/jsm/controls/OrbitControls.js';
 // import { DeviceOrientationControls } from 'https://threejsfundamentals.org/threejs/resources/threejs/r127/examples/jsm/controls/DeviceOrientationControls.js';
+import { OrbitControls } from './OrbitControls.js'
 import { DeviceOrientationControls } from './DeviceOrientationControls.js'
 
 let camera, controls, deviceControls;
@@ -29,7 +30,7 @@ closeButton.addEventListener( 'click', function () {
 if(clickableVideo == false){
     document.getElementById('video_id').style.display = 'none';
     document.getElementById('blackScreen').style.display = 'none';
-    controls.enableRotate = true
+    // controls.enableRotate = true
     controls.enabled = true
     // clickableVideo = true
     setTimeout(function(){ clickableVideo = true
@@ -71,10 +72,10 @@ function init() {
     camera.rotation.z = 100
 
     controls = new OrbitControls( camera, renderer.domElement );
-    controls.enableZoom = false;
-    controls.enablePan = false;
-    controls.enableDamping = true;
-    controls.rotateSpeed = - 0.25;
+    // controls.enableZoom = false;
+    // controls.enablePan = false;
+    // controls.enableDamping = true;
+    // controls.rotateSpeed = - 0.25;
 
     deviceControls = new DeviceOrientationControls( camera );
     deviceControls.connect()
@@ -149,11 +150,7 @@ function init() {
     textScene.add(text);
     window.addEventListener( 'resize', onWindowResize );
     clickTrigger()
-
-
 }
-
-
 
 
 
@@ -200,7 +197,6 @@ function onWindowResize() {
 }
 
 
-
 function animate() {
 
     requestAnimationFrame( animate );
@@ -221,7 +217,7 @@ function animate() {
         testBool = false;
       }
 
-    controls.update(); // required when damping is enabled
+    // controls.update(); // required when damping is enabled
 
 
     deviceControls.update(lon, lat);
@@ -230,71 +226,100 @@ function animate() {
     runTween()
 
 }
+
+
 function clickTrigger(){
     const raycaster = new THREE.Raycaster();
     document.addEventListener(
         "click",
         event => {
 
-        mouse.x = event.clientX / window.innerWidth * 2 - 1;
-        mouse.y = -(event.clientY / window.innerHeight) * 2 +1 ;
-        console.log('event.clientX = ' + event.clientX)
-        console.log('event.clientY = ' + event.clientY)
-        console.log('mouse.x = ' + mouse.x)
-        console.log('mouse.y = ' + mouse.y)
+            mouse.x = event.clientX / window.innerWidth * 2 - 1;
+            mouse.y = -(event.clientY / window.innerHeight) * 2 +1 ;
 
-        raycaster.setFromCamera( mouse, camera );
+            console.log('event.clientX = ' + event.clientX)
+            console.log('event.clientY = ' + event.clientY)
+            console.log('mouse.x = ' + mouse.x)
+            console.log('mouse.y = ' + mouse.y)
 
-
-        lon = ( event.clientX - event.clientX) * 10 + mouse.x;
-        lat = ( event.clientY - event.clientY ) * 10 + mouse.y;
+            raycaster.setFromCamera( mouse, camera );
 
 
-        var intersects = raycaster.intersectObjects( spriteScene2.children, false );
-        var intersects2 = raycaster.intersectObjects( spriteScene3.children, false );
-        var intersects3 = raycaster.intersectObjects( spriteScene.children, false );
-        var intersects4 = raycaster.intersectObjects( spriteScene4.children, false );
-        var intersectsVideo = raycaster.intersectObjects( videoScene.children, false );
-        if ( intersects.length > 0 ) {
-            setTimeout(function(){
-                scene.add(spriteScene3);
-                spriteScene3.add(sprite3);
-
-            }, 1000);
-            envLoad("scenes/test_scene_2.jpg")
-            scene.remove(spriteScene);
-            scene.remove(spriteScene2);
-            scene.remove(filterScene);
-            scene.remove(textScene);
-            clickableVideo = false
-            videoMesh.position.set(135, 15, -15);
-
-        }
-        if ( intersects3.length > 0 ) {
-            setTimeout(function(){
-                scene.add(spriteScene4)
-                spriteScene4.add(sprite4);
-
-            }, 1000);
-            envLoad("scenes/test_scene3.jpg")
-            scene.remove(spriteScene);
-            scene.remove(spriteScene2);
-            scene.remove(videoScene);
-            scene.remove(filterScene);
-            scene.remove(textScene);
-            clickableVideo = false
+            lon = ( event.clientX - event.clientX) * 10 + mouse.x;
+            lat = ( event.clientY - event.clientY ) * 10 + mouse.y;
 
 
-        } if(intersects4.length > 0  ) {
-            console.log("clicked")
+            var intersects = raycaster.intersectObjects( spriteScene2.children, false );
+            var intersects2 = raycaster.intersectObjects( spriteScene3.children, false );
+            var intersects3 = raycaster.intersectObjects( spriteScene.children, false );
+            var intersects4 = raycaster.intersectObjects( spriteScene4.children, false );
+            var intersectsVideo = raycaster.intersectObjects( videoScene.children, false );
+            if ( intersects.length > 0 ) {
+                setTimeout(function(){
+                    scene.add(spriteScene3);
+                    spriteScene3.add(sprite3);
+
+                }, 1000);
+                envLoad("scenes/test_scene_2.jpg")
+                scene.remove(spriteScene);
+                scene.remove(spriteScene2);
+                scene.remove(filterScene);
+                scene.remove(textScene);
+                clickableVideo = false
+                videoMesh.position.set(135, 15, -15);
+
+            }
+            if ( intersects3.length > 0 ) {
+                setTimeout(function(){
+                    scene.add(spriteScene4)
+                    spriteScene4.add(sprite4);
+
+                }, 1000);
+                envLoad("scenes/test_scene3.jpg")
+                scene.remove(spriteScene);
+                scene.remove(spriteScene2);
+                scene.remove(videoScene);
+                scene.remove(filterScene);
+                scene.remove(textScene);
+                clickableVideo = false
+
+
+            } if(intersects4.length > 0  ) {
+                console.log("clicked")
+                setTimeout(function(){
+                        videoMesh.position.set(50, 1, -10);
+                        scene.add(spriteScene);
+                        scene.add(spriteScene2);
+                        scene.add(videoScene);
+                        scene.add(textScene);
+                        scene.add(filterScene);
+
+
+                }, 1000);
+                setTimeout(function(){
+                    new TWEEN.Tween( videoMesh.material ).to( { opacity: 1 }, 2000 ).start();
+                    // new TWEEN.Tween( cubeColor.material ).to( { opacity: 0.5 }, 4000 ).start();
+                    new TWEEN.Tween( text.material ).to( { opacity: 1 }, 2000 ).start();
+                }, 900);
+
+                    envLoad("scenes/test_scene2.jpg")
+                    scene.remove(spriteScene4);
+                    new TWEEN.Tween( videoMesh.material ).to( { opacity: 0 }, 100 ).start();
+                    new TWEEN.Tween( cubeColor.material ).to( { opacity: 0 }, 100 ).start();
+                    new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
+                    clickableVideo = true
+
+
+                }
+            if(intersects2.length > 0  ) {
             setTimeout(function(){
                     videoMesh.position.set(50, 1, -10);
                     scene.add(spriteScene);
                     scene.add(spriteScene2);
-                    scene.add(videoScene);
+                    // scene.add(videoScene);
                     scene.add(textScene);
                     scene.add(filterScene);
-
+                    spriteScene3.remove(sprite3);
 
             }, 1000);
             setTimeout(function(){
@@ -304,56 +329,33 @@ function clickTrigger(){
             }, 900);
 
                 envLoad("scenes/test_scene2.jpg")
-                scene.remove(spriteScene4);
+                console.log("clicked")
                 new TWEEN.Tween( videoMesh.material ).to( { opacity: 0 }, 100 ).start();
                 new TWEEN.Tween( cubeColor.material ).to( { opacity: 0 }, 100 ).start();
                 new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
+
                 clickableVideo = true
 
-
             }
-        if(intersects2.length > 0  ) {
-        setTimeout(function(){
-                videoMesh.position.set(50, 1, -10);
-                scene.add(spriteScene);
-                scene.add(spriteScene2);
-                // scene.add(videoScene);
-                scene.add(textScene);
-                scene.add(filterScene);
-                spriteScene3.remove(sprite3);
+            else if ( intersectsVideo.length > 0 && clickableVideo == true) {
+                setTimeout(function(){
 
-        }, 1000);
-        setTimeout(function(){
-            new TWEEN.Tween( videoMesh.material ).to( { opacity: 1 }, 2000 ).start();
-            // new TWEEN.Tween( cubeColor.material ).to( { opacity: 0.5 }, 4000 ).start();
-            new TWEEN.Tween( text.material ).to( { opacity: 1 }, 2000 ).start();
-        }, 900);
+                    var player = videojs('#video2');
+                    var video = document.getElementById('video2');
+                    video.requestFullscreen();
+                    player.play();
+            }, 1500);
+            document.getElementById('video2').style.display = 'block';
+            document.getElementById('video_id').style.display = 'block';
+            document.getElementById('blackScreen').style.display = 'block';
+            // controls.enableRotate = false
+            deviceControls.enabled = false
+            clickableVideo = false
 
-            envLoad("scenes/test_scene2.jpg")
-            console.log("clicked")
-            new TWEEN.Tween( videoMesh.material ).to( { opacity: 0 }, 100 ).start();
-            new TWEEN.Tween( cubeColor.material ).to( { opacity: 0 }, 100 ).start();
-            new TWEEN.Tween( text.material ).to( { opacity: 0 }, 100 ).start();
+              }
 
-            clickableVideo = true
+        // deviceControls.update(lon, lat);
 
-        }
-        else if ( intersectsVideo.length > 0 && clickableVideo == true) {
-            setTimeout(function(){
-
-                var player = videojs('#video2');
-                var video = document.getElementById('video2');
-                video.requestFullscreen();
-                player.play();
-        }, 1500);
-        document.getElementById('video2').style.display = 'block';
-        document.getElementById('video_id').style.display = 'block';
-        document.getElementById('blackScreen').style.display = 'block';
-        controls.enableRotate = false
-        deviceControls.enabled = false
-        clickableVideo = false
-
-          }
         });
 }
 
