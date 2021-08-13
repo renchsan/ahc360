@@ -346,23 +346,23 @@ function clickTrigger(){
 
             }
             else if ( intersectsVideo.length > 0 && clickableVideo == true) {
-                setTimeout(function(){
+                    setTimeout(function(){
 
-                    var player = videojs('#video2');
-                    var video = document.getElementById('video2');
-                    video.requestFullscreen();
-                    player.play();
-            }, 1500);
-            document.getElementById('video2').style.display = 'block';
-            document.getElementById('video_id').style.display = 'block';
-            document.getElementById('blackScreen').style.display = 'block';
-            controls.enableRotate = false
-            deviceControls.enabled = false
-            clickableVideo = false
+                        var player = videojs('#video2');
+                        var video = document.getElementById('video2');
+                        video.requestFullscreen();
+                        player.play();
+                }, 1500);
+                document.getElementById('video2').style.display = 'block';
+                document.getElementById('video_id').style.display = 'block';
+                document.getElementById('blackScreen').style.display = 'block';
+                controls.enableRotate = false
+                deviceControls.enabled = false
+                clickableVideo = false
+            }
 
-              }
-
-        // deviceControls.update(lon, lat);
+        controls.enableRotate = false
+        deviceControls.enabled = true
 
 
         });
