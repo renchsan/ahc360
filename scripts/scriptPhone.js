@@ -30,7 +30,7 @@ closeButton.addEventListener( 'click', function () {
 if(clickableVideo == false){
     document.getElementById('video_id').style.display = 'none';
     document.getElementById('blackScreen').style.display = 'none';
-    controls.enableRotate = false
+    controls.enableRotate = true
     deviceControls.enabled = true
     // clickableVideo = true
     setTimeout(function(){ clickableVideo = true
@@ -76,6 +76,8 @@ function init() {
     controls.enablePan = false;
     controls.enableDamping = true;
     controls.rotateSpeed = - 0.25;
+    // controls.minPolarAngle = 150;
+    // controls.maxPolarAngle = 50;
 
     deviceControls = new DeviceOrientationControls( camera );
     deviceControls.connect()
@@ -218,9 +220,10 @@ function animate() {
       }
 
     controls.update(); // required when damping is enabled
-
+    // console.log("controls.update")
 
     deviceControls.update(lon, lat);
+    // console.log("deviceControls.update")
 
     renderer.render( scene, camera );
     runTween()
@@ -233,6 +236,8 @@ function clickTrigger(){
     document.addEventListener(
         "click",
         event => {
+
+            deviceControls.enabled = false
 
             mouse.x = event.clientX / window.innerWidth * 2 - 1;
             mouse.y = -(event.clientY / window.innerHeight) * 2 +1 ;
