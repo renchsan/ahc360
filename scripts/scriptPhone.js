@@ -31,7 +31,7 @@ if(clickableVideo == false){
     document.getElementById('video_id').style.display = 'none';
     document.getElementById('blackScreen').style.display = 'none';
 
-    controls.enableRotate = true
+    // controls.enableRotate = true
     deviceControls.enabled = true
 
     // clickableVideo = true
@@ -153,9 +153,25 @@ function init() {
     text.rotation.set(0,-1.5,0)
     textScene.add(text);
     window.addEventListener( 'resize', onWindowResize );
+
     clickTrigger()
+
+    container.addEventListener("touchstart", handleStart, false);
+    container.addEventListener("touchend", handleEnd, false);
+    // container.addEventListener("touchcancel", handleCancel, false);
+    // container.addEventListener("touchmove", handleMove, false);
+
 }
 
+function handleStart(){
+    deviceControls.enabled = false;
+    controls.enableRotate = true;
+}
+
+function handleEnd(){
+    deviceControls.enabled = true;
+    controls.enableRotate = false;
+}
 
 
 function getTexturesFromAtlasFile( atlasImgUrl, tilesNum ) {
