@@ -30,7 +30,7 @@ closeButton.addEventListener( 'click', function () {
 if(clickableVideo == false){
     document.getElementById('video_id').style.display = 'none';
     document.getElementById('blackScreen').style.display = 'none';
-    controls.enableRotate = true
+    controls.enableRotate = false
     deviceControls.enabled = true
     // clickableVideo = true
     setTimeout(function(){ clickableVideo = true
