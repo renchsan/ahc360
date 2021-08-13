@@ -31,7 +31,7 @@ if(clickableVideo == false){
     document.getElementById('video_id').style.display = 'none';
     document.getElementById('blackScreen').style.display = 'none';
 
-    // controls.enableRotate = true
+    controls.enableRotate = true
     deviceControls.enabled = true
 
     // clickableVideo = true
@@ -240,9 +240,9 @@ function clickTrigger(){
         event => {
 
             controls.enableRotate = true
-            console.log('controls.enableRotate = true')
+            // console.log('controls.enableRotate = true')
             deviceControls.enabled = false
-            console.log('deviceControls.enabled = false')
+            // console.log('deviceControls.enabled = false')
 
             mouse.x = event.clientX / window.innerWidth * 2 - 1;
             mouse.y = -(event.clientY / window.innerHeight) * 2 +1 ;
@@ -363,10 +363,10 @@ function clickTrigger(){
                 clickableVideo = false
             }
 
-            controls.enableRotate = false
-            console.log('controls.enableRotate = false')
-            deviceControls.enabled = true
-            console.log('deviceControls.enabled = true')
+            // controls.enableRotate = false
+            // console.log('controls.enableRotate = false')
+            // deviceControls.enabled = true
+            // console.log('deviceControls.enabled = true')
 
         });
 }
